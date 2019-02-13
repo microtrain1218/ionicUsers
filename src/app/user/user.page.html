@@ -6,7 +6,7 @@
 
 <ion-content padding>
   <ion-card *ngIf="user">
-    
+
     <ion-card-header>
       <ion-card-title>{{ user.first_name }} {{ user.last_name }}</ion-card-title>
     </ion-card-header>
@@ -23,13 +23,16 @@
       <ion-icon name="arrow-dropleft"></ion-icon>
     </ion-fab-button>
 
-    <ion-fab-list side="start">
-      <ion-fab-button  color="light">
+    <ion-fab-list side="start" *ngIf="user">
+
+      <ion-fab-button color="light" [routerLink]="['/user-edit', user._id]">
         <ion-icon name="create"></ion-icon>
       </ion-fab-button>
-      <ion-fab-button color="danger">
+
+      <ion-fab-button color="danger" [routerLink]="['/user-delete', user._id]">
         <ion-icon name="trash"></ion-icon>
       </ion-fab-button>
+
     </ion-fab-list>
   </ion-fab>
 
