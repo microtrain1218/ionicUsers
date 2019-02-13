@@ -10,9 +10,18 @@ import { User } from '../user';
 })
 export class UsersPage implements OnInit {
 
-  constructor() { }
+  constructor(private usersService: UsersService) { }
 
   ngOnInit() {
+    this.getUsers();
+  }
+
+  getUsers(): void{
+    this.usersService.users().subscribe(
+      (response)=>{
+        console.log(response);
+      }
+    );
   }
 
 }

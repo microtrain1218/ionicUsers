@@ -12,6 +12,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
 import { AuthService } from './auth.service';
+import { UsersService } from './users.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -26,6 +27,7 @@ import { AuthService } from './auth.service';
     StatusBar,
     SplashScreen,
     AuthService,
+    UsersService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     { provide: LocationStrategy, useClass: HashLocationStrategy }
   ],
