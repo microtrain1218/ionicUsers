@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 import { UsersService } from '../users.service';
 import { User } from '../user';
@@ -8,13 +8,13 @@ import { User } from '../user';
   templateUrl: './users.page.html',
   styleUrls: ['./users.page.scss'],
 })
-export class UsersPage implements OnInit {
+export class UsersPage {
 
   users:User;
 
   constructor(private usersService: UsersService) { }
 
-  ngOnInit() {
+  ionViewWillEnter() {
     this.getUsers();
   }
 

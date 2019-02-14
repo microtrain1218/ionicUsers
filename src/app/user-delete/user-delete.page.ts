@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+
+import { UsersService } from '../users.service';
+import { User } from '../user';
 
 @Component({
   selector: 'app-user-delete',
@@ -7,9 +11,38 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserDeletePage implements OnInit {
 
-  constructor() { }
+  user: User;
+
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private router: Router,
+    private usersService: UsersService
+  ) { }
 
   ngOnInit() {
+    this.activatedRoute.params.subscribe(
+      (params)=>{
+        this.getUser(params['id']);
+      }
+    );
+  }
+
+  deleteUser(id: string) :void{
+    this.usersService.delete(id).subscribe(
+      (response:any)=>{
+        if(response.success == true){
+          this.router.navigate(['/users']);
+        }
+      }
+    );
+  }
+
+  getUser(id: string): void{
+    this.usersService.user(id).subscribe(
+      (response:any)=>{
+        this.user = response.user;
+      }
+    );
   }
 
 }
