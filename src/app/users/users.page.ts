@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+
+import { CookieService } from 'ngx-cookie-service';
 
 import { UsersService } from '../users.service';
 import { User } from '../user';
@@ -12,10 +15,18 @@ export class UsersPage {
 
   users:User;
 
-  constructor(private usersService: UsersService) { }
+  constructor(
+    private router: Router,
+    private usersService: UsersService,
+    private cookieService: CookieService
+  ) { }
 
   ionViewWillEnter() {
-    this.getUsers();
+    if(this.cookieService.check('sugar')==false){
+      this.router.navigate(['/login']);
+    }else{
+      this.getUsers();
+    }
   }
 
   getUsers(): void{

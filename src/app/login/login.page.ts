@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms'; 
+import { Router } from '@angular/router';
+
+import { CookieService } from 'ngx-cookie-service';
 
 import { AuthService } from '../auth.service';
 import { User } from '../user';
@@ -15,7 +18,9 @@ export class LoginPage implements OnInit {
   errorMessage: string;
 
   constructor(
-    private authService: AuthService
+    private authService: AuthService,
+    private cookieService: CookieService,
+    private router: Router
   ) {}
 
   ngOnInit() {}
@@ -26,7 +31,15 @@ export class LoginPage implements OnInit {
     }
 
     if(response.success===true){
-      window.location.href = '/';
+      var text = "";
+      var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    
+      for (var i = 0; i < 10; i++){
+        text += possible.charAt(Math.floor(Math.random() * possible.length));
+      }
+      
+      this.cookieService.set('sugar', text);
+      window.location.href='/ionicUsers#users';
     }
   }
 
