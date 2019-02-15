@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
+import { CookieService } from 'ngx-cookie-service';
+
 import { UsersService } from '../users.service';
 import { User } from '../user'; 
 
@@ -15,13 +17,21 @@ export class UserPage {
   
   constructor(
     private activatedRoute: ActivatedRoute,
-    private usersService: UsersService  
+    private usersService: UsersService,
+    private cookieService: CookieService  
   ) { }
 
   ionViewWillEnter() {
-    this.activatedRoute.params.subscribe(params=>{
-      this.getUser(params['id']);
-    });
+
+    if(this.cookieService.check('sugar')==false){
+      window.location.href='/ionicUsers/#/login';
+    }else{
+      this.activatedRoute.params.subscribe(params=>{
+        this.getUser(params['id']);
+      });
+    }
+
+
   }
 
   getUser(id:string):void {

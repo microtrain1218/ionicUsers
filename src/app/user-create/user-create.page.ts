@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms'; 
 import { Router } from '@angular/router';
 
+import { CookieService } from 'ngx-cookie-service';
+
 import { UsersService } from '../users.service';
 import { User } from '../user';
 
@@ -18,10 +20,17 @@ export class UserCreatePage implements OnInit {
 
   constructor(
     private usersService: UsersService,
-    private router: Router
+    private router: Router,
+    private cookieService: CookieService
   ) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+
+    if(this.cookieService.check('sugar')==false){
+      window.location.href='/ionicUsers/#/login';
+    }
+
+  }
 
   response(response): void{
     

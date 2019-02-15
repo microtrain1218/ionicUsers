@@ -24,8 +24,8 @@ export class LogoutPage {
   logout(): void{
     this.authService.logOut().subscribe(
       (response: any) => {
-        this.cookieService.delete('sugar');
-        window.location.href='/login';
+        this.cookieService.delete('sugar', '/ionicUsers');
+        window.location.href='/ionicUsers';
       }
     );
   }

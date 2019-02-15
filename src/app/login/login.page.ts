@@ -38,8 +38,8 @@ export class LoginPage implements OnInit {
         text += possible.charAt(Math.floor(Math.random() * possible.length));
       }
       
-      this.cookieService.set('sugar', text);
-      window.location.href='/ionicUsers#users';
+      this.cookieService.set('sugar', text, (1/24), '/ionicUsers');
+      window.location.href='/ionicUsers';
     }
   }
 

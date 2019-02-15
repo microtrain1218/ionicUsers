@@ -22,11 +22,13 @@ export class UsersPage {
   ) { }
 
   ionViewWillEnter() {
+
     if(this.cookieService.check('sugar')==false){
       this.router.navigate(['/login']);
     }else{
       this.getUsers();
     }
+    
   }
 
   getUsers(): void{
