@@ -7,7 +7,16 @@
   </ion-toolbar>
 </ion-header>
 
+
+
 <ion-content padding>
+  
+  <ion-item *ngIf="!users">
+    <ion-label text-center>
+      <ion-spinner></ion-spinner>
+    </ion-label>
+  </ion-item>
+
   <ion-list *ngIf="users">
     <ion-item *ngFor="let user of users" [routerLink]="['/user', user._id]">
       <ion-label>{{ user.username }}</ion-label>

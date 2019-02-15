@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { AuthService } from '../auth.service';
-import { Router } from '@angular/router';
 
 import { CookieService } from 'ngx-cookie-service';
+
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-logout',
@@ -13,7 +13,6 @@ export class LogoutPage {
 
   constructor(
     private authService: AuthService,
-    private router: Router,
     private cookieService: CookieService
   ) { }
 

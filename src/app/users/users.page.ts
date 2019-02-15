@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
+import { LoadingController } from '@ionic/angular';
+
 import { CookieService } from 'ngx-cookie-service';
 
 import { UsersService } from '../users.service';
@@ -14,12 +16,15 @@ import { User } from '../user';
 export class UsersPage {
 
   users:User;
-
+  loading: any;
+  
   constructor(
     private router: Router,
     private usersService: UsersService,
-    private cookieService: CookieService
+    private cookieService: CookieService,
+    public loadingController: LoadingController
   ) { }
+
 
   ionViewWillEnter() {
 
@@ -34,7 +39,6 @@ export class UsersPage {
   getUsers(): void{
     this.usersService.users().subscribe(
       (response:any)=>{
-        console.log(response);
         this.users = response.users;
       }
     );

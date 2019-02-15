@@ -8,6 +8,13 @@
 </ion-header>
 
 <ion-content padding>
+
+  <ion-item *ngIf="!user">
+    <ion-label text-center>
+      <ion-spinner></ion-spinner>
+    </ion-label>
+  </ion-item>
+
   <ion-card *ngIf="user">
 
     <ion-card-header>
